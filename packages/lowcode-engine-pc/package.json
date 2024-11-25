@@ -1,0 +1,16 @@
+{
+  "name": "lowcode-engine-pc",
+  "version": "0.0.1-dev",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "provider": "workspace:^",
+    "utils": "workspace:^"
+  }
+}
