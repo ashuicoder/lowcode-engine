@@ -11,6 +11,9 @@ importers:
       '@vueuse/core':
         specifier: ^11.3.0
         version: 11.3.0(vue@3.5.13(typescript@5.6.3))
+      es-toolkit:
+        specifier: ^1.27.0
+        version: 1.27.0
       pinia:
         specifier: ^2.2.6
         version: 2.2.6(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
@@ -189,7 +192,11 @@ importers:
 
   packages/types: {}
 
-  packages/utils: {}
+  packages/utils:
+    dependencies:
+      types:
+        specifier: workspace:^
+        version: link:../types
 
 packages:
 
@@ -1361,6 +1368,9 @@ packages:
 
   es-module-lexer@1.5.4:
     resolution: {integrity: sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw==}
+
+  es-toolkit@1.27.0:
+    resolution: {integrity: sha512-ETSFA+ZJArcuSCpzD2TjAy6UHpx4E4uqFsoDg9F/nTLogrLmVVZQ+zNxco5h7cWnA1nNak07IXsLcaSMih+ZPQ==}
 
   esbuild@0.21.5:
     resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
@@ -3739,6 +3749,8 @@ snapshots:
   error-stack-parser-es@0.1.5: {}
 
   es-module-lexer@1.5.4: {}
+
+  es-toolkit@1.27.0: {}
 
   esbuild@0.21.5:
     optionalDependencies:

@@ -1,3 +1,6 @@
+import { cloneDeep } from 'es-toolkit'
+import type { IMaterial, IComponentNode } from 'types'
+
 export function generateUniqueId() {
   if (window.crypto && window.crypto.getRandomValues) {
     const array = new Uint32Array(2)
@@ -9,5 +12,14 @@ export function generateUniqueId() {
     return Array.from(array, (dec) => `000000${dec.toString(16)}`.slice(-8)).join('')
   } else {
     throw new Error('No secure random number generator available.')
+  }
+}
+
+export function generateComponentNode(material: IMaterial): IComponentNode {
+  const id = generateUniqueId()
+  return {
+    ...material,
+    style: material.style ? cloneDeep(material.style) : {},
+    id,
   }
 }
