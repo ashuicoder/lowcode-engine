@@ -1,6 +1,6 @@
 {
-  "name": "lowcode-engine-pc",
-  "version": "0.0.1-dev",
+  "name": "data",
+  "version": "1.0.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -9,11 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "data": "workspace:^",
-    "provider": "workspace:^",
-    "utils": "workspace:^"
-  },
   "devDependencies": {
     "types": "workspace:^"
   }
