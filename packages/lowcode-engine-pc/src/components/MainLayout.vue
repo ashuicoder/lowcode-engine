@@ -11,16 +11,39 @@
         <DrawBoard />
       </div>
     </main>
-    <aside class="rg-w-[240px] rg-bg-white rg-shadow-lg">
-      <NDivider>配置项</NDivider>
+    <aside class="rg-w-[240px] rg-bg-white rg-shadow-lg rg-overflow-y-auto rg-custom-scrollbar">
+      <RightAside />
     </aside>
   </div>
 </template>
 
 <script setup lang="ts">
-import { NDivider } from 'naive-ui'
 import LeftAside from './LeftAside.vue'
 import DrawBoard from './DrawBoard.vue'
+import RightAside from './RightAside.vue'
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.rg-custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px; /* 滚动条宽度 */
+    height: 8px;
+    display: none; /* 默认隐藏滚动条 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* 轨道背景颜色 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1); /* 滚动条拇指颜色 */
+    border-radius: 4px; /* 滚动条拇指圆角 */
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      display: block; /* 鼠标移入时显示滚动条 */
+    }
+  }
+}
+</style>
