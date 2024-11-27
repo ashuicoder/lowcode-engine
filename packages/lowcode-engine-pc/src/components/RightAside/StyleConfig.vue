@@ -101,7 +101,6 @@ const otherStyleString = ref('{}')
 
 function handleOtherChange() {
   try {
-    console.log(otherStyleString.value)
     const obj = JSON.parse(otherStyleString.value)
 
     currentNode.value!.style = {

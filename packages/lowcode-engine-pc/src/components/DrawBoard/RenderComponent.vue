@@ -9,6 +9,7 @@
 <script setup lang="ts">
 import DropComponent from './DropComponent.vue'
 import { generateComponentNode } from 'utils'
+import { currentNode } from 'data'
 import type { IComponentNodeTree, IMaterial, IComponentNode } from 'types'
 
 const componentTree = defineModel<IComponentNodeTree>('value', {
@@ -22,6 +23,7 @@ function handleUpdate(value: IComponentNode, material: IMaterial) {
   } else {
     value.children = [node]
   }
+  currentNode.value = node
 }
 </script>
 
