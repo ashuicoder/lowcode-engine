@@ -1,8 +1,7 @@
-import type { CSSProperties } from 'vue'
 export interface IMaterial {
   name: string
   type: string
-  style?: CSSProperties
+  style: Record<string, string | null>
 }
 
 export interface IMaterialGroup {

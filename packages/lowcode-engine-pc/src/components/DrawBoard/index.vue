@@ -1,5 +1,7 @@
 <template>
-  <RenderComponent v-model:value="componentTree" />
+  <div class="rg-flex-1 rg-min-h-0 rg-bg-white rg-overflow-auto rg-custom-scrollbar rg-mt-4">
+    <RenderComponent v-model:value="componentTree" />
+  </div>
 </template>
 
 <script setup lang="ts">

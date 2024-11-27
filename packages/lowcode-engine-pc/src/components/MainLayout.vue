@@ -1,29 +1,26 @@
 <template>
-  <div class="rg-flex rg-h-screen rg-bg-slate-50 rg-text-sm rg-select-none">
-    <aside
-      class="rg-w-[240px] rg-bg-white rg-shadow-lg rg-px-4 rg-overflow-y-auto rg-custom-scrollbar"
-    >
-      <LeftAside />
-    </aside>
-    <main class="rg-flex-1 rg-min-w-0 rg-mx-4 rg-bg-white rg-flex rg-flex-col">
-      <div class="rg-h-[60px] rg-border-b rg-border-slate-100">1</div>
-      <div class="rg-flex-1 rg-min-h-0 rg-overflow-auto rg-custom-scrollbar">
-        <DrawBoard />
-      </div>
+  <div class="rg-flex rg-h-screen rg-bg-slate-50 rg-text-sm rg-select-none rg-engine-container">
+    <LeftAside />
+    <main class="rg-flex-1 rg-min-w-0 rg-mx-4 rg-flex rg-flex-col">
+      <HeaderLayout />
+      <DrawBoard />
     </main>
-    <aside class="rg-w-[240px] rg-bg-white rg-shadow-lg rg-overflow-y-auto rg-custom-scrollbar">
-      <RightAside />
-    </aside>
+    <RightAside />
   </div>
 </template>
 
 <script setup lang="ts">
-import LeftAside from './LeftAside.vue'
-import DrawBoard from './DrawBoard.vue'
-import RightAside from './RightAside.vue'
+import LeftAside from './LeftAside/index.vue'
+import DrawBoard from './DrawBoard/index.vue'
+import RightAside from './RightAside/index.vue'
+import HeaderLayout from './HeaderLayout/index.vue'
 </script>
 
 <style lang="scss" scoped>
+.rg-engine-container {
+  --primary: #f40;
+}
+
 .rg-custom-scrollbar {
   &::-webkit-scrollbar {
     width: 8px; /* 滚动条宽度 */
