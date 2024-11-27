@@ -69,6 +69,10 @@
           :actions="['clear']"
         ></NColorPicker>
       </NFormItem>
+
+      <NFormItem label="其他配置">
+        <NInput v-model:value="otherStyleString" type="textarea" @blur="handleOtherChange"></NInput>
+      </NFormItem>
     </NForm>
   </NSpace>
 </template>
@@ -92,6 +96,22 @@ watch(
     immediate: true,
   },
 )
+
+const otherStyleString = ref('{}')
+
+function handleOtherChange() {
+  try {
+    console.log(otherStyleString.value)
+    const obj = JSON.parse(otherStyleString.value)
+
+    currentNode.value!.style = {
+      ...obj,
+      ...currentNode.value!.style,
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
 
 <style scoped></style>
