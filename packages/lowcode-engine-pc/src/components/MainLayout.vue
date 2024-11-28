@@ -18,7 +18,7 @@ import HeaderLayout from './HeaderLayout/index.vue'
 
 <style lang="scss" scoped>
 .rg-engine-container {
-  --primary: #f40;
+  --primary: #3b82f6;
 }
 
 .rg-custom-scrollbar {

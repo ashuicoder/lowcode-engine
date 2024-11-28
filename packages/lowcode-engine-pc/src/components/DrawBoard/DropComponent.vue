@@ -2,11 +2,7 @@
   <div
     :ref="dropRef"
     :style="node.style"
-    class="rg-border rg-border-dashed rg-relative"
-    :class="[
-      isOverCurrent ? 'rg-bg-primary' : '',
-      currentNode?.id === node.id ? 'rg-border-primary' : '',
-    ]"
+    class="rg-border rg-border-dashed rg-relative rg-compoent"
     @click.stop="handleComponentClick"
   >
     <slot></slot>
@@ -15,10 +11,11 @@
 
 <script setup lang="ts">
 import { currentNode } from '@packages/data'
-
 import { useDrop } from 'vue3-dnd'
 import { toRefs } from '@vueuse/core'
 import type { IMaterial, IComponentNode } from '@packages/types'
+import { computed, watch } from 'vue'
+import colors from 'tailwindcss/colors'
 
 const { node } = defineProps<{
   node: IComponentNode
@@ -31,6 +28,7 @@ const emits = defineEmits<{
 const [collect, dropRef] = useDrop(() => ({
   accept: ['material'],
   drop(item: IMaterial, monitor) {
+    if (!node.canDrop) return
     if (monitor.didDrop()) return
     emits('drop', item)
   },
@@ -42,10 +40,40 @@ const [collect, dropRef] = useDrop(() => ({
 
 const { isOverCurrent } = toRefs(collect)
 
+const borderColor = computed(() => {
+  if (isOverCurrent.value && node.canDrop) return colors.green[500]
+  if (isOverCurrent.value && !node.canDrop) return colors.red[500]
+
+  if (node.id === currentNode.value?.id) return 'var(--primary)'
+  return colors.gray[300]
+})
+
+watch(isOverCurrent, (val) => {
+  console.log(val, node.canDrop)
+})
+
 function handleComponentClick() {
   if (node.id === currentNode.value?.id) return
   currentNode.value = node
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.rg-compoent {
+  &::before {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    @apply rg-border rg-border-dashed;
+    border-color: v-bind(borderColor);
+  }
+}
+</style>

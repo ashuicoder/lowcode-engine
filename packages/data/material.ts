@@ -9,6 +9,7 @@ export const pcMaterials: Array<IMaterialGroup> = [
         style: {
           height: '60px',
         },
+        canDrop: true,
       },
       {
         type: 'NFlex',
@@ -21,6 +22,25 @@ export const pcMaterials: Array<IMaterialGroup> = [
         type: 'NGrid',
         name: '栅格布局',
         style: {},
+      },
+    ],
+  },
+
+  {
+    groupName: '展示组件',
+    childrens: [
+      {
+        type: 'text',
+        name: '文本',
+        style: {},
+      },
+      {
+        type: 'image',
+        name: '图片',
+        style: {
+          width: '200px',
+          height: '200px',
+        },
       },
     ],
   },

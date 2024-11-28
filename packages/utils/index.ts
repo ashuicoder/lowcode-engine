@@ -29,3 +29,16 @@ export function generateComponentNode(material: IMaterial): IComponentNode {
 export function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
+
+export function initDrawBoard(): IComponentNode {
+  return {
+    id: generateUniqueId(),
+    type: 'div',
+    name: '基础版本',
+    style: {
+      height: '800px',
+      width: '100%',
+    },
+    canDrop: true,
+  }
+}
