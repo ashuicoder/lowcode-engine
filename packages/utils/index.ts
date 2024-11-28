@@ -17,12 +17,14 @@ export function generateUniqueId() {
   }
 }
 
-export function generateComponentNode(material: IMaterial): IComponentNode {
+export function generateComponentNode(material: IMaterial, parent: IComponentNode): IComponentNode {
   const id = generateUniqueId()
   return {
     ...material,
     style: material.style ? cloneDeep(material.style) : {},
     id,
+    level: parent.level + 1,
+    parentId: parent.id,
   }
 }
 
@@ -40,5 +42,6 @@ export function initDrawBoard(): IComponentNode {
       width: '100%',
     },
     canDrop: true,
+    level: 1,
   }
 }

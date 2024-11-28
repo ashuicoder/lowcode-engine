@@ -14,7 +14,7 @@ import { currentNode } from '@packages/data'
 import { useDrop } from 'vue3-dnd'
 import { toRefs } from '@vueuse/core'
 import type { IMaterial, IComponentNode } from '@packages/types'
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import colors from 'tailwindcss/colors'
 
 const { node } = defineProps<{
@@ -48,8 +48,9 @@ const borderColor = computed(() => {
   return colors.gray[300]
 })
 
-watch(isOverCurrent, (val) => {
-  console.log(val, node.canDrop)
+const contentStr = computed(() => {
+  if (!node.canDrop && isOverCurrent.value) return '"该元素不支持放置"'
+  return '""'
 })
 
 function handleComponentClick() {
@@ -61,17 +62,15 @@ function handleComponentClick() {
 <style lang="scss" scoped>
 .rg-compoent {
   &::before {
-    content: '';
+    content: v-bind(contentStr);
     position: absolute;
     pointer-events: none;
-  }
-
-  &::before {
+    color: red;
+    @apply rg-flex rg-justify-center rg-items-center;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1;
     @apply rg-border rg-border-dashed;
     border-color: v-bind(borderColor);
   }

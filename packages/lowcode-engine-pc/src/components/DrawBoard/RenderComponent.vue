@@ -20,7 +20,7 @@ const componentTree = defineModel<IComponentNodeTree>('list', {
 })
 
 function handleDrop(node: IComponentNode, material: IMaterial) {
-  const vNode = generateComponentNode(material)
+  const vNode = generateComponentNode(material, node)
   if (node.children) {
     node.children.push(vNode)
   } else {

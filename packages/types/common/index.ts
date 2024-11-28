@@ -13,6 +13,8 @@ export interface IMaterialGroup {
 
 export interface IComponentNode extends IMaterial {
   id: string
+  level: number
+  parentId?: string
   children?: IComponentNode[]
 }
 
