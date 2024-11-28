@@ -1,6 +1,6 @@
 <template>
   <div class="rg-flex-1 rg-min-h-0 rg-bg-white rg-overflow-auto rg-custom-scrollbar rg-mt-4">
-    <RenderComponent v-model:value="componentTree" />
+    <RenderComponent v-model:list="componentTree" />
   </div>
 </template>
 
@@ -8,10 +8,10 @@
 import { ref } from 'vue'
 
 import RenderComponent from './RenderComponent.vue'
-import { generateUniqueId } from 'utils'
-import { currentNode } from 'data'
+import { generateUniqueId } from '@packages/utils'
+import { currentNode } from '@packages/data'
 import { cloneDeep } from 'es-toolkit'
-import type { IComponentNodeTree } from 'types'
+import type { IComponentNodeTree } from '@packages/types'
 
 const initComponentNode = {
   id: generateUniqueId(),

@@ -18,7 +18,7 @@ import { ref } from 'vue'
 import { NSpace, NButton } from 'naive-ui'
 import { FileUploadOutlined, FileDownloadOutlined, RemoveRedEyeOutlined } from '@vicons/material'
 import { Database } from '@vicons/tabler'
-import { renderIcon } from 'utils'
+import { renderIcon } from '@packages/utils'
 
 const toolsList = ref([
   {

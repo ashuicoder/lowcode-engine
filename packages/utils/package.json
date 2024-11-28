@@ -1,5 +1,5 @@
 {
-  "name": "utils",
+  "name": "@packages/utils",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "types": "workspace:^"
+    "@packages/types": "workspace:^"
   }
 }

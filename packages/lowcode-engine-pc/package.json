@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "data": "workspace:^",
-    "provider": "workspace:^",
-    "utils": "workspace:^"
+    "@packages/data": "workspace:^",
+    "@packages/provider": "workspace:^",
+    "@packages/utils": "workspace:^"
   },
   "devDependencies": {
-    "types": "workspace:^"
+    "@packages/types": "workspace:^"
   }
 }

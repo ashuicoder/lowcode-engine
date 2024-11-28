@@ -15,7 +15,7 @@
 import { unref, computed } from 'vue'
 import { useDrag } from 'vue3-dnd'
 import { toRefs } from '@vueuse/core'
-import type { IMaterial } from 'packages/types'
+import type { IMaterial } from '@packages/types'
 
 const props = defineProps<{
   material: IMaterial

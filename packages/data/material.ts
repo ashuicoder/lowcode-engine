@@ -1,4 +1,4 @@
-import type { IMaterialGroup } from 'types'
+import type { IMaterialGroup } from '@packages/types'
 export const pcMaterials: Array<IMaterialGroup> = [
   {
     groupName: '布局组件',
@@ -20,6 +20,7 @@ export const pcMaterials: Array<IMaterialGroup> = [
       {
         type: 'NGrid',
         name: '栅格布局',
+        style: {},
       },
     ],
   },

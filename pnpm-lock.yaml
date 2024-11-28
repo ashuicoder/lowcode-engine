@@ -175,23 +175,23 @@ importers:
 
   packages/data:
     devDependencies:
-      types:
+      '@packages/types':
         specifier: workspace:^
         version: link:../types
 
   packages/lowcode-engine-pc:
     dependencies:
-      data:
+      '@packages/data':
         specifier: workspace:^
         version: link:../data
-      provider:
+      '@packages/provider':
         specifier: workspace:^
         version: link:../provider
-      utils:
+      '@packages/utils':
         specifier: workspace:^
         version: link:../utils
     devDependencies:
-      types:
+      '@packages/types':
         specifier: workspace:^
         version: link:../types
 
@@ -203,7 +203,7 @@ importers:
 
   packages/utils:
     dependencies:
-      types:
+      '@packages/types':
         specifier: workspace:^
         version: link:../types
 

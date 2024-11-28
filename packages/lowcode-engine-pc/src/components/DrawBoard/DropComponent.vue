@@ -1,12 +1,12 @@
 <template>
   <div
     :ref="dropRef"
+    :style="node.style"
     class="rg-border rg-border-dashed rg-relative"
     :class="[
-      isOverCurrent ? 'rg-border-primary' : '',
-      currentNode?.id === value.id ? 'rg-border-primary' : '',
+      isOverCurrent ? 'rg-bg-primary' : '',
+      currentNode?.id === node.id ? 'rg-border-primary' : '',
     ]"
-    :style="getStyle"
     @click.stop="handleComponentClick"
   >
     <slot></slot>
@@ -14,25 +14,25 @@
 </template>
 
 <script setup lang="ts">
+import { currentNode } from '@packages/data'
+
 import { useDrop } from 'vue3-dnd'
 import { toRefs } from '@vueuse/core'
-import { currentNode } from 'data'
-import type { IComponentNode, IMaterial } from 'types'
-import { computed, type CSSProperties } from 'vue'
+import type { IMaterial, IComponentNode } from '@packages/types'
 
-const props = defineProps<{
-  value: IComponentNode
+const { node } = defineProps<{
+  node: IComponentNode
 }>()
 
 const emits = defineEmits<{
-  drop: [node: IComponentNode, materral: IMaterial]
+  drop: [material: IMaterial]
 }>()
 
 const [collect, dropRef] = useDrop(() => ({
   accept: ['material'],
   drop(item: IMaterial, monitor) {
     if (monitor.didDrop()) return
-    emits('drop', props.value, item)
+    emits('drop', item)
   },
   collect: (monitor) => ({
     isOver: monitor.isOver(),
@@ -43,16 +43,9 @@ const [collect, dropRef] = useDrop(() => ({
 const { isOverCurrent } = toRefs(collect)
 
 function handleComponentClick() {
-  currentNode.value = props.value
+  if (node.id === currentNode.value?.id) return
+  currentNode.value = node
 }
-
-const getStyle = computed(() => {
-  const { width, height } = props.value?.style as any
-  const style: CSSProperties = {}
-  if (width) style.width = width
-  if (height) style.height = height
-  return style
-})
 </script>
 
 <style scoped></style>

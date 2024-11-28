@@ -1,29 +1,32 @@
 <template>
-  <DropComponent v-for="item in componentTree" :key="item.id" :value="item" @drop="handleUpdate">
-    <component :is="item.type" :style="item.style">
-      <RenderComponent v-if="item.children && item.children.length" v-model:value="item.children" />
-    </component>
+  <DropComponent
+    v-for="item in componentTree"
+    :key="item.id"
+    :node="item"
+    @drop="(material) => handleDrop(item, material)"
+  >
+    <RenderComponent v-if="item.children && item.children.length" v-model:list="item.children" />
   </DropComponent>
 </template>
 
 <script setup lang="ts">
+import { generateComponentNode } from '@packages/utils'
 import DropComponent from './DropComponent.vue'
-import { generateComponentNode } from 'utils'
-import { currentNode } from 'data'
-import type { IComponentNodeTree, IMaterial, IComponentNode } from 'types'
+import type { IComponentNodeTree, IComponentNode, IMaterial } from '@packages/types'
+import { currentNode } from '@packages/data'
 
-const componentTree = defineModel<IComponentNodeTree>('value', {
+const componentTree = defineModel<IComponentNodeTree>('list', {
   required: true,
 })
 
-function handleUpdate(value: IComponentNode, material: IMaterial) {
-  const node = generateComponentNode(material)
-  if (value.children) {
-    value.children.push(node)
+function handleDrop(node: IComponentNode, material: IMaterial) {
+  const vNode = generateComponentNode(material)
+  if (node.children) {
+    node.children.push(vNode)
   } else {
-    value.children = [node]
+    node.children = [vNode]
   }
-  currentNode.value = node
+  currentNode.value = vNode
 }
 </script>
 

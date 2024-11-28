@@ -1,7 +1,10 @@
+import type { CSSProperties } from 'vue'
+
 export interface IMaterial {
   name: string
   type: string
-  style: Record<string, string | null>
+  style: CSSProperties
+  includeStyle?: string[]
 }
 
 export interface IMaterialGroup {
@@ -11,7 +14,7 @@ export interface IMaterialGroup {
 
 export interface IComponentNode extends IMaterial {
   id: string
-  children?: Array<IComponentNode>
+  children?: IComponentNode[]
 }
 
 export type IComponentNodeTree = Array<IComponentNode>

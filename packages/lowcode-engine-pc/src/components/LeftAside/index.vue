@@ -12,7 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { pcMaterials } from 'data'
+import { NDivider } from 'naive-ui'
+import { pcMaterials } from '@packages/data'
 import Material from './Material.vue'
 </script>
 

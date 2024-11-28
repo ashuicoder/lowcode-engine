@@ -1,6 +1,6 @@
 import { cloneDeep } from 'es-toolkit'
 import { NIcon } from 'naive-ui'
-import type { IMaterial, IComponentNode } from 'types'
+import type { IMaterial, IComponentNode } from '@packages/types'
 import { h, type Component } from 'vue'
 
 export function generateUniqueId() {

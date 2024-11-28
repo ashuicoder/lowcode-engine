@@ -9,7 +9,7 @@
         <NInput v-model:value="currentNode.style.height"></NInput>
       </NFormItem>
 
-      <NFormItem label="外边距">
+      <NFormItem label="外边距" label-placement="top">
         <div class="rg-w-full rg-grid rg-grid-cols-3 rg-gap-2">
           <div></div>
           <div class="rg-flex rg-flex-col rg-items-center">
@@ -36,7 +36,7 @@
         </div>
       </NFormItem>
 
-      <NFormItem label="内边距">
+      <NFormItem label="内边距" label-placement="top">
         <div class="rg-w-full rg-grid rg-grid-cols-3 rg-gap-2">
           <div></div>
           <div class="rg-flex rg-flex-col rg-items-center">
@@ -79,7 +79,7 @@
 
 <script setup lang="ts">
 import { NSpace, NForm, NFormItem, NInput, NIcon, NColorPicker } from 'naive-ui'
-import { currentNode } from 'data'
+import { currentNode } from '@packages/data'
 import { CaretDown, CaretUp, CaretBack, CaretForward } from '@vicons/ionicons5'
 import { watch, ref, nextTick } from 'vue'
 

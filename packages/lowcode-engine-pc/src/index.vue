@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { Provider } from 'provider'
+import { Provider } from '@packages/provider'
 import MainLayout from './components/MainLayout.vue'
 </script>
 
