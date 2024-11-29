@@ -14,6 +14,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@imengyu/vue3-context-menu": "^1.4.3",
     "@vueuse/core": "^11.3.0",
     "es-toolkit": "^1.27.0",
     "pinia": "^2.2.6",
@@ -26,6 +27,7 @@
     "@tsconfig/node22": "^22.0.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.9.0",
+    "@vicons/fluent": "^0.12.0",
     "@vicons/ionicons5": "^0.12.0",
     "@vicons/material": "^0.12.0",
     "@vicons/tabler": "^0.12.0",

@@ -4,18 +4,25 @@
     :style="node.style"
     class="rg-border rg-border-dashed rg-relative rg-compoent"
     @click.stop="handleComponentClick"
+    @contextmenu.stop="onContextMenu"
   >
     <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
-import { currentNode } from '@packages/data'
+import { currentNode, componentTree } from '@packages/data'
 import { useDrop } from 'vue3-dnd'
 import { toRefs } from '@vueuse/core'
 import type { IMaterial, IComponentNode } from '@packages/types'
 import { computed } from 'vue'
 import colors from 'tailwindcss/colors'
+
+import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
+import ContextMenu from '@imengyu/vue3-context-menu'
+
+import { Delete20Regular, ArrowSortUp24Filled, ArrowSortDown24Filled } from '@vicons/fluent'
+import { renderIcon, removeNode, moveNodeDown, moveNodeUp } from '@packages/utils'
 
 const { node } = defineProps<{
   node: IComponentNode
@@ -56,6 +63,40 @@ const contentStr = computed(() => {
 function handleComponentClick() {
   if (node.id === currentNode.value?.id) return
   currentNode.value = node
+}
+
+function onContextMenu(e: MouseEvent) {
+  //prevent the browser's default menu
+  e.preventDefault()
+  //show your menu
+  ContextMenu.showContextMenu({
+    x: e.x,
+    y: e.y,
+    items: [
+      {
+        label: '上移',
+        onClick: () => {
+          moveNodeUp(componentTree, node.id)
+        },
+        icon: renderIcon(ArrowSortUp24Filled),
+      },
+      {
+        label: '下移',
+        onClick: () => {
+          moveNodeDown(componentTree, node.id)
+        },
+        icon: renderIcon(ArrowSortDown24Filled),
+      },
+      {
+        label: '删除',
+        disabled: node.level === 1,
+        onClick: () => {
+          removeNode(componentTree, node.id)
+        },
+        icon: renderIcon(Delete20Regular),
+      },
+    ],
+  })
 }
 </script>
 
