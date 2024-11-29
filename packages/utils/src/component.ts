@@ -2,6 +2,7 @@ import type { IComponentNodeTree, IComponentNode, IMaterial } from '@packages/ty
 import type { Ref } from 'vue'
 import { generateUniqueId } from './tool'
 import { cloneDeep } from 'es-toolkit'
+import { currentNode } from '@packages/data'
 
 export function generateComponentNode(material: IMaterial, parent: IComponentNode): IComponentNode {
   const id = generateUniqueId()
@@ -57,6 +58,7 @@ export function removeNode(tree: Ref<IComponentNodeTree>, nodeId: string): void 
       break
     }
   }
+  currentNode.value = tree.value[0]
 }
 
 /**

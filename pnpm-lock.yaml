@@ -209,6 +209,9 @@ importers:
 
   packages/utils:
     dependencies:
+      '@packages/data':
+        specifier: workspace:^
+        version: link:../data
       '@packages/types':
         specifier: workspace:^
         version: link:../types
