@@ -1,3 +1,3 @@
-export * from './material'
-export * from './component'
-export * from './cssProperties'
+export * from './src/material'
+export * from './src/component'
+export * from './src/cssProperties'

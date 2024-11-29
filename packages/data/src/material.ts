@@ -42,6 +42,14 @@ export const pcMaterials: Array<IMaterialGroup> = [
           height: '200px',
         },
       },
+      {
+        type: 'swiper',
+        name: '轮播图',
+        style: {
+          width: '100%',
+          height: '300px',
+        },
+      },
     ],
   },
 ]
