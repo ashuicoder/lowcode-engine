@@ -1,4 +1,4 @@
-import { componentTree } from '@packages/data'
+import { componentTree, currentNode } from '@packages/data'
 export function generateUniqueId() {
   if (window.crypto && window.crypto.getRandomValues) {
     const array = new Uint32Array(2)
@@ -25,4 +25,18 @@ export function handleDwonloadJson(fileName = 'componentTree.json') {
   a.click()
   URL.revokeObjectURL(url)
   document.body.removeChild(a)
+}
+
+export function handleUploadJson(file: File) {
+  if (!file) return
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    const json = e.target?.result
+    if (typeof json === 'string') {
+      const data = JSON.parse(json)
+      componentTree.value = data
+      currentNode.value = componentTree.value[0]
+    }
+  }
+  reader.readAsText(file)
 }
