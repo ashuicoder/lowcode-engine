@@ -23,8 +23,6 @@ export function handleDwonloadJson(fileName = 'componentTree.json') {
   a.download = fileName
   document.body.appendChild(a)
   a.click()
-
-  // 清理
   URL.revokeObjectURL(url)
   document.body.removeChild(a)
 }
