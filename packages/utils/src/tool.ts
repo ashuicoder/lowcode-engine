@@ -1,3 +1,4 @@
+import { componentTree } from '@packages/data'
 export function generateUniqueId() {
   if (window.crypto && window.crypto.getRandomValues) {
     const array = new Uint32Array(2)
@@ -10,4 +11,20 @@ export function generateUniqueId() {
   } else {
     throw new Error('No secure random number generator available.')
   }
+}
+
+export function handleDwonloadJson(fileName = 'componentTree.json') {
+  const json = JSON.stringify(componentTree.value)
+  const blob = new Blob([json], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+
+  const a = document.createElement('a')
+  a.href = url
+  a.download = fileName
+  document.body.appendChild(a)
+  a.click()
+
+  // 清理
+  URL.revokeObjectURL(url)
+  document.body.removeChild(a)
 }
