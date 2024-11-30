@@ -12,8 +12,9 @@ export const pcMaterials: Array<IMaterialGroup> = [
         canDrop: true,
       },
       {
-        type: 'NFlex',
+        type: 'NButton',
         name: '弹性布局',
+        canDrop: true,
         style: {
           height: '60px',
         },
@@ -22,6 +23,7 @@ export const pcMaterials: Array<IMaterialGroup> = [
         type: 'NGrid',
         name: '栅格布局',
         style: {},
+        canDrop: true,
       },
     ],
   },
@@ -30,7 +32,7 @@ export const pcMaterials: Array<IMaterialGroup> = [
     groupName: '展示组件',
     childrens: [
       {
-        type: 'text',
+        type: 'span',
         name: '文本',
         style: {},
       },
