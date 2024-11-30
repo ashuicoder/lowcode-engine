@@ -48,14 +48,13 @@ const [collect, dropBind] = useDrop(() => ({
 
 const { isOverCurrent } = toRefs(collect)
 
-function setDrop(el: HTMLElement | Record<string, any> | null) {
-  if (!el) return
-  if (!node.canDrop) {
-    dropBind(null)
-    return
-  }
+function setDrop(el: HTMLElement | Record<string, any>) {
   if (el instanceof window.HTMLElement) {
     dropBind(el)
+    return
+  }
+  if (!el.$el) {
+    console.error('el.$el is null')
     return
   }
   dropBind(el.$el)

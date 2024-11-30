@@ -37,7 +37,7 @@ export const pcMaterials: Array<IMaterialGroup> = [
         style: {},
       },
       {
-        type: 'image',
+        type: 'img',
         name: '图片',
         style: {
           width: '200px',
