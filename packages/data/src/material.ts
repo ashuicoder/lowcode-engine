@@ -34,7 +34,6 @@ export const pcMaterials: Array<IMaterialGroup> = [
       {
         type: 'span',
         name: '文本',
-        style: {},
       },
       {
         type: 'img',

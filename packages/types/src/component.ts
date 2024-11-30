@@ -1,7 +1,7 @@
 export interface IMaterial {
   name: string
   type: string
-  style: Record<string, any>
+  style?: Record<string, any>
   includeStyle?: string[]
   canDrop?: boolean
 }
