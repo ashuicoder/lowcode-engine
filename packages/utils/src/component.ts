@@ -27,6 +27,7 @@ export function initDrawBoard(): IComponentNode {
     },
     canDrop: true,
     level: 1,
+    excludeStyle: ['width'],
   }
 }
 

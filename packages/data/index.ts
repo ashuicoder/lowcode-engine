@@ -1,5 +1,5 @@
 export * from './src/material'
 export * from './src/component'
-export * from './src/cssProperties'
+export * from './src/style'
 export * from './src/common'
 export * from './src/reactive'

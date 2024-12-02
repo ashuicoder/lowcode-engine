@@ -7,6 +7,7 @@ export type IMaterialType =
   | 'swiper'
   | 'flex'
   | 'grid'
+  | 'form'
 
 export interface IMaterial {
   name: string

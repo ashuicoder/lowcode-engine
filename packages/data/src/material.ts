@@ -35,4 +35,14 @@ export const pcMaterials: Array<IMaterialGroup> = [
       },
     ],
   },
+
+  {
+    groupName: '数据录入',
+    childrens: [
+      {
+        type: 'form',
+        name: '表单',
+      },
+    ],
+  },
 ]

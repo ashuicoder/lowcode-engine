@@ -1,27 +1,52 @@
 import type { IComponentMap } from '@packages/types'
 export const pcComponentMap: IComponentMap = {
   box: {
-    component: 'div',
+    component: {
+      name: 'div',
+    },
+    includeStyle: 'all',
     style: {
       height: '60px',
     },
   },
   text: {
-    component: 'span',
+    component: {
+      name: 'span',
+    },
   },
   image: {
-    component: 'img',
+    component: {
+      name: 'img',
+    },
   },
   button: {
-    component: 'NButton',
+    component: {
+      name: 'NButton',
+      import: 'naive-ui',
+    },
   },
   flex: {
-    component: 'NFlex',
+    component: {
+      name: 'NFlex',
+      import: 'naive-ui',
+    },
   },
   grid: {
-    component: 'NGrid',
+    component: {
+      name: 'NGrid',
+      import: 'naive-ui',
+    },
   },
   swiper: {
-    component: 'NSwiper',
+    component: {
+      name: 'NSwiper',
+      import: 'naive-ui',
+    },
+  },
+  form: {
+    component: {
+      name: 'NaiveUiForm',
+      import: 'naive-ui-form',
+    },
   },
 }
