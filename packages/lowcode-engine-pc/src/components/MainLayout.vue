@@ -1,5 +1,8 @@
 <template>
-  <div class="rg-flex rg-h-screen rg-bg-slate-50 rg-text-sm rg-select-none rg-engine-container">
+  <div
+    class="rg-flex rg-h-screen rg-bg-slate-50 rg-text-sm rg-select-none rg-engine-container rg-relative"
+    :id="CONTAINER_ID"
+  >
     <LeftAside />
     <main class="rg-flex-1 rg-min-w-0 rg-mx-4 rg-flex rg-flex-col">
       <HeaderLayout />
@@ -14,6 +17,8 @@ import LeftAside from './LeftAside/index.vue'
 import DrawBoard from './DrawBoard/index.vue'
 import RightAside from './RightAside/index.vue'
 import HeaderLayout from './HeaderLayout/index.vue'
+
+import { CONTAINER_ID } from '@packages/data'
 </script>
 
 <style lang="scss" scoped>

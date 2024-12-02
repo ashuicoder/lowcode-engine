@@ -1,13 +1,14 @@
 <template>
-  <div
-    :ref="dropRef"
+  <component
+    :ref="setDrop"
     :style="node.style"
+    :is="node.type"
     class="rg-border rg-border-dashed rg-relative rg-compoent"
     @click.stop="handleComponentClick"
     @contextmenu.stop="onContextMenu"
   >
     <slot></slot>
-  </div>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -15,7 +16,7 @@ import { currentNode, componentTree } from '@packages/data'
 import { useDrop } from 'vue3-dnd'
 import { toRefs } from '@vueuse/core'
 import type { IMaterial, IComponentNode } from '@packages/types'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import colors from 'tailwindcss/colors'
 
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
@@ -23,6 +24,7 @@ import ContextMenu from '@imengyu/vue3-context-menu'
 
 import { Delete20Regular, ArrowSortUp24Filled, ArrowSortDown24Filled } from '@vicons/fluent'
 import { renderIcon, removeNode, moveNodeDown, moveNodeUp } from '@packages/utils'
+import { showForbidDrop } from '@packages/data'
 
 const { node } = defineProps<{
   node: IComponentNode
@@ -32,7 +34,7 @@ const emits = defineEmits<{
   drop: [material: IMaterial]
 }>()
 
-const [collect, dropRef] = useDrop(() => ({
+const [collect, dropBind] = useDrop(() => ({
   accept: ['material'],
   drop(item: IMaterial, monitor) {
     if (!node.canDrop) return
@@ -46,6 +48,22 @@ const [collect, dropRef] = useDrop(() => ({
 }))
 
 const { isOverCurrent } = toRefs(collect)
+
+function setDrop(el: HTMLElement | Record<string, any>) {
+  if (el instanceof window.HTMLElement) {
+    dropBind(el)
+    return
+  }
+  if (!el.$el) {
+    console.error('el.$el is null')
+    return
+  }
+  dropBind(el.$el)
+}
+
+watch(isOverCurrent, (val) => {
+  showForbidDrop.value = val && !node.canDrop
+})
 
 const borderColor = computed(() => {
   if (isOverCurrent.value && node.canDrop) return colors.green[500]
