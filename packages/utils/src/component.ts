@@ -2,23 +2,25 @@ import type { IComponentNodeTree, IComponentNode, IMaterial } from '@packages/ty
 import type { Ref } from 'vue'
 import { generateUniqueId } from './tool'
 import { cloneDeep } from 'es-toolkit'
-import { currentNode } from '@packages/data'
+import { currentNode, pcComponentMap } from '@packages/data'
 
 export function generateComponentNode(material: IMaterial, parent: IComponentNode): IComponentNode {
+  const node = pcComponentMap[material.type]
   const id = generateUniqueId()
   return {
-    ...material,
-    style: material.style ? cloneDeep(material.style) : {},
+    ...node,
+    style: node.style ? cloneDeep(node.style) : {},
     id,
     level: parent.level + 1,
     parentId: parent.id,
+    name: material.name,
   }
 }
 export function initDrawBoard(): IComponentNode {
   return {
     id: generateUniqueId(),
-    type: 'div',
-    name: '基础版本',
+    component: pcComponentMap.box.component,
+    name: '最外层盒子',
     style: {
       height: '800px',
       width: '100%',

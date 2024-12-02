@@ -1,21 +1,19 @@
-export interface IMaterial {
-  name: string
-  type: string
-  style?: Record<string, any>
-  includeStyle?: string[]
-  canDrop?: boolean
-}
+import type { IMaterialType } from './material'
 
-export interface IMaterialGroup {
-  groupName: string
-  childrens: IMaterial[]
-}
-
-export interface IComponentNode extends IMaterial {
+export interface IComponentNode {
   id: string
+  name: string
   level: number
   parentId?: string
+  style?: Record<string, any>
+  canDrop?: boolean
+  component: string
   children?: IComponentNode[]
 }
 
 export type IComponentNodeTree = Array<IComponentNode>
+
+export type IComponentMap = Record<
+  IMaterialType,
+  Omit<IComponentNode, 'id' | 'level' | 'parentId' | 'name'>
+>

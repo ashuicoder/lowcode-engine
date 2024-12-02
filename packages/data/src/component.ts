@@ -1,6 +1,27 @@
-import { ref } from 'vue'
-import type { IComponentNode, IComponentNodeTree } from '@packages/types'
-
-export const currentNode = ref<IComponentNode>()
-export const componentTree = ref<IComponentNodeTree>([])
-export const showForbidDrop = ref(false)
+import type { IComponentMap } from '@packages/types'
+export const pcComponentMap: IComponentMap = {
+  box: {
+    component: 'div',
+    style: {
+      height: '60px',
+    },
+  },
+  text: {
+    component: 'span',
+  },
+  image: {
+    component: 'img',
+  },
+  button: {
+    component: 'NButton',
+  },
+  flex: {
+    component: 'NFlex',
+  },
+  grid: {
+    component: 'NGrid',
+  },
+  swiper: {
+    component: 'NSwiper',
+  },
+}

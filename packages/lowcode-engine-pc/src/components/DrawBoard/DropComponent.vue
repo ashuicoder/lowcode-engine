@@ -2,7 +2,7 @@
   <component
     :ref="setDrop"
     :style="node.style"
-    :is="node.type"
+    :is="node.component"
     class="rg-border rg-border-dashed rg-relative rg-compoent"
     @click.stop="handleComponentClick"
     @contextmenu.stop="onContextMenu"
