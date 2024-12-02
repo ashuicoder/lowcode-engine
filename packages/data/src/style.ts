@@ -65,19 +65,19 @@ export const styleConfigMap: IStyleConfigMap = {
     action: 'input',
     group: {
       borderTopLeftRadius: {
-        desc: '左上边框圆角',
+        desc: '左上圆角',
         action: 'input',
       },
       borderTopRightRadius: {
-        desc: '右上边框圆角',
+        desc: '右上圆角',
         action: 'input',
       },
       borderBottomLeftRadius: {
-        desc: '左下边框圆角',
+        desc: '左下圆角',
         action: 'input',
       },
       borderBottomRightRadius: {
-        desc: '右下边框圆角',
+        desc: '右下圆角',
         action: 'input',
       },
     },
@@ -135,18 +135,20 @@ export const styleConfigMap: IStyleConfigMap = {
     desc: '外边距',
     action: 'input',
     group: {
-      marginLeft: {
-        desc: '左边距',
-        action: 'input',
-      },
-      marginRight: {
-        desc: '右边距',
-        action: 'input',
-      },
       marginTop: {
         desc: '上边距',
         action: 'input',
       },
+      marginLeft: {
+        desc: '左边距',
+        action: 'input',
+      },
+
+      marginRight: {
+        desc: '右边距',
+        action: 'input',
+      },
+
       marginBottom: {
         desc: '下边距',
         action: 'input',

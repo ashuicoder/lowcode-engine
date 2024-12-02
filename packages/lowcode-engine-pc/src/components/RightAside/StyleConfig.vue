@@ -2,52 +2,39 @@
   <NSpace vertical>
     <NForm v-if="show && currentNode?.style" label-placement="left" size="small">
       <template v-for="(value, key) in currentNodeStyle" :key>
-        <NFormItem v-if="!value.group" :label="value.desc">
-          <NInput v-if="value.action === 'input'" v-model:value="currentNode.style[key]"></NInput>
-          <NColorPicker
-            v-else-if="value.action === 'color'"
-            v-model:value="currentNode.style[key]"
-          />
-          <NSelect
-            v-else-if="value.action === 'select'"
-            v-model:value="currentNode.style[key]"
-            :options="value.options"
-          ></NSelect>
-        </NFormItem>
-        <NFormItem v-else :label="value.desc" label-placement="top">
-          <div class="rg-w-full rg-grid rg-grid-cols-3 rg-gap-2">
-            <template v-for="(_, childKey, index) in value.group" :key="childKey">
-              <template v-if="index === 0">
-                <div></div>
-                <div class="rg-flex rg-flex-col rg-items-center">
-                  <NInput v-model:value="currentNode.style[childKey]" placeholder=""></NInput>
-                  <NIcon size="24" color="var(--primary)"> <CaretDown></CaretDown> </NIcon>
-                </div>
-              </template>
-              <template v-if="index === 1">
-                <div></div>
-                <div class="rg-flex rg-items-center">
-                  <NInput v-model:value="currentNode.style[childKey]" placeholder=""></NInput>
-                  <NIcon size="24" color="var(--primary)"> <CaretForward></CaretForward> </NIcon>
-                </div>
-              </template>
-              <template v-if="index === 2">
-                <div></div>
-                <div class="rg-flex rg-items-center">
-                  <NIcon size="24" color="var(--primary)"> <CaretBack></CaretBack> </NIcon>
+        <NFormItem v-if="value" :label="value.desc" :label-placement="value.group ? 'top' : 'left'">
+          <div class="rg-w-full">
+            <NInput
+              v-if="value.action === 'input'"
+              v-model:value="currentNode.style[key] as any"
+              placeholder=""
+            ></NInput>
+            <NColorPicker
+              v-else-if="value.action === 'color'"
+              v-model:value="currentNode.style[key] as any"
+            />
+            <NSelect
+              v-else-if="value.action === 'select'"
+              v-model:value="currentNode.style[key]"
+              :options="value.options"
+              placeholder=""
+            ></NSelect>
 
-                  <NInput v-model:value="currentNode.style[childKey]" placeholder=""></NInput>
+            <div v-if="value.group" class="rg-w-full rg-mt-2">
+              <NSpace vertical>
+                <div
+                  v-for="(childValue, childKey) in value.group"
+                  :key="childKey"
+                  class="rg-flex rg-items-center"
+                >
+                  <div class="rg-w-[120px]">{{ childValue?.desc }}</div>
+                  <NInput
+                    v-model:value="currentNode.style[childKey] as any"
+                    placeholder=""
+                  ></NInput>
                 </div>
-              </template>
-              <template v-if="index === 3">
-                <div></div>
-                <div class="rg-flex rg-flex-col rg-items-center">
-                  <NIcon size="24" color="var(--primary)"> <CaretUp></CaretUp> </NIcon>
-                  <NInput v-model:value="currentNode.style[childKey]" placeholder=""></NInput>
-                </div>
-                <div></div>
-              </template>
-            </template>
+              </NSpace>
+            </div>
           </div>
         </NFormItem>
       </template>
@@ -60,9 +47,8 @@
 </template>
 
 <script setup lang="ts">
-import { NSpace, NForm, NFormItem, NInput, NSelect, NIcon, NColorPicker } from 'naive-ui'
+import { NSpace, NForm, NFormItem, NInput, NSelect, NColorPicker } from 'naive-ui'
 import { currentNode, styleConfigMap } from '@packages/data'
-import { CaretDown, CaretUp, CaretBack, CaretForward } from '@vicons/ionicons5'
 import { watch, ref, nextTick, computed } from 'vue'
 import { omit, pick } from 'es-toolkit'
 import type { IStyleConfigMap } from '@packages/types'
