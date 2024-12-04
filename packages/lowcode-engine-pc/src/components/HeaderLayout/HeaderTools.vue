@@ -1,25 +1,29 @@
 <template>
-  <NSpace>
-    <NButton
-      v-for="item in toolsList"
-      :key="item.action"
-      size="small"
-      type="primary"
-      ghost
-      :render-icon="item.icon"
-      @click="item.onClick()"
-    >
-      {{ item.name }}</NButton
-    >
+  <div>
+    <NSpace>
+      <NButton
+        v-for="item in toolsList"
+        :key="item.action"
+        size="small"
+        type="primary"
+        ghost
+        :render-icon="item.icon"
+        @click="item.onClick()"
+      >
+        {{ item.name }}</NButton
+      >
 
-    <input
-      type="file"
-      accept=".json"
-      ref="uploadRef"
-      style="display: none"
-      @change="handleFileChange"
-    />
-  </NSpace>
+      <input
+        type="file"
+        accept=".json"
+        ref="uploadRef"
+        style="display: none"
+        @change="handleFileChange"
+      />
+    </NSpace>
+
+    <DataConfig v-model:value="showDataModal" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -29,6 +33,7 @@ import { FileUploadOutlined, FileDownloadOutlined, RemoveRedEyeOutlined } from '
 import { Database } from '@vicons/tabler'
 import { renderIcon, handleDwonloadJson, handleUploadJson } from '@packages/utils'
 import type { ITool } from '@packages/types'
+import DataConfig from '../DataConfig/index.vue'
 
 const toolsList = ref<ITool[]>([
   {
@@ -36,7 +41,7 @@ const toolsList = ref<ITool[]>([
     icon: renderIcon(Database),
     action: 'database',
     onClick() {
-      handleDwonloadJson()
+      handleDataConfig()
     },
   },
   {
@@ -70,6 +75,11 @@ function handleFileChange(e: Event) {
   const target = e.target as HTMLInputElement
   if (!target.files) return
   handleUploadJson(target.files[0])
+}
+
+const showDataModal = ref(true)
+function handleDataConfig() {
+  showDataModal.value = true
 }
 </script>
 

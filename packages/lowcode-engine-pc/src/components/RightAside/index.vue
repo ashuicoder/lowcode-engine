@@ -3,13 +3,16 @@
     class="rg-w-[320px] rg-bg-white rg-shadow-lg rg-overflow-y-auto rg-custom-scrollbar rg-p-4"
   >
     <n-tabs size="small" type="line" animated default-value="style" pane-style="margin-top: 20px">
-      <n-tab-pane name="style" tab="样式设置">
+      <n-tab-pane name="style" tab="样式">
         <StyleConfig />
       </n-tab-pane>
-      <n-tab-pane name="prop" tab="属性设置">
+      <n-tab-pane name="prop" tab="属性">
         <PropConfig />
       </n-tab-pane>
-      <n-tab-pane name="event" tab="事件设置">
+      <n-tab-pane name="data" tab="数据">
+        <PropConfig />
+      </n-tab-pane>
+      <n-tab-pane name="event" tab="事件">
         <EventConfig />
       </n-tab-pane>
     </n-tabs>
