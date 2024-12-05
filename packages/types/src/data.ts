@@ -6,7 +6,6 @@ export interface IData {
   type: DataType
   property?: string
   level: number
-  allowNull: boolean
   children?: IData[]
   canHaveChild: boolean
   id: string

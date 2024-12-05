@@ -31,13 +31,6 @@
           ></NSelect>
         </NFormItem>
 
-        <NFormItem label="允许为空" path="allowNull">
-          <NRadioGroup v-model:value="formValue.allowNull">
-            <NRadio :value="true">是</NRadio>
-            <NRadio :value="false">否</NRadio>
-          </NRadioGroup>
-        </NFormItem>
-
         <NFormItem label=" ">
           <NSpace>
             <NButton type="primary" @click="handleAddOrEdit">{{
@@ -63,8 +56,6 @@ import {
   NSpace,
   NText,
   NH4,
-  NRadioGroup,
-  NRadio,
   type FormRules,
   type FormInst,
 } from 'naive-ui'
@@ -112,12 +103,6 @@ const rules: FormRules = {
     trigger: ['blur', 'change'],
     message: '请选择类型',
   },
-  allowNull: {
-    required: true,
-    trigger: 'change',
-    type: 'boolean',
-    message: '请选择是否允许为空',
-  },
 }
 const formValue = ref<Partial<IData>>({})
 
@@ -126,6 +111,9 @@ const formRef = useTemplateRef<FormInst>('form')
 async function handleAddOrEdit() {
   const [err] = await to(formRef.value!.validate())
   if (err) return
+
+  // 帮我加上object property不能重复，不管新增还是编辑都要验证
+
   const value = cloneDeep(formValue.value) as IData
   value.id = generateUniqueId()
   if (type === 1) {

@@ -9,6 +9,11 @@
   >
     <div class="rg-my-8">
       <NDataTable :columns :data="componentData" size="small"></NDataTable>
+
+      <div class="rg-mt-4">
+        <NH4>JSON预览</NH4>
+        <div class="rg-mt-4 rg-bg-black rg-text-white rg-p-4">{{ data }}</div>
+      </div>
     </div>
 
     <AddOrEdit v-model:value="showDraw" :data="currentData" :type @confirm="handleConfirm" />
@@ -16,13 +21,13 @@
 </template>
 
 <script setup lang="tsx">
-import { NModal, NDataTable, type DataTableColumns, NSpace, NButton } from 'naive-ui'
-import { ref } from 'vue'
+import { NModal, NDataTable, type DataTableColumns, NSpace, NButton, NH4 } from 'naive-ui'
+import { computed, ref, watch } from 'vue'
 
 import type { IData } from '@packages/types'
 import AddOrEdit from './AddOrEdit.vue'
 import { componentData, dataConfig } from '@packages/data'
-import { removeData } from '@packages/utils'
+import { removeData, generateData } from '@packages/utils'
 
 const show = defineModel<boolean>('value', {
   required: true,
@@ -48,15 +53,6 @@ const columns: DataTableColumns<IData> = [
     width: 120,
     render(column) {
       return column.property || '-'
-    },
-  },
-
-  {
-    title: '允许为空',
-    key: 'allowNull',
-    width: 120,
-    render(column) {
-      return column.allowNull ? '是' : '否'
     },
   },
 
@@ -126,6 +122,20 @@ function handleConfirm(type: 1 | 2, data: IData) {
     currentData.value = data
   }
 }
+
+const data = computed(() => {
+  return JSON.stringify(generateData(componentData[0]), null, 2)
+})
+
+watch(
+  data,
+  (val) => {
+    console.log(val)
+  },
+  {
+    deep: true,
+  },
+)
 </script>
 
 <style scoped></style>
