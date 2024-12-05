@@ -22,6 +22,7 @@ import { ref } from 'vue'
 import type { IData } from '@packages/types'
 import AddOrEdit from './AddOrEdit.vue'
 import { componentData, dataConfig } from '@packages/data'
+import { removeData } from '@packages/utils'
 
 const show = defineModel<boolean>('value', {
   required: true,
@@ -90,7 +91,7 @@ const columns: DataTableColumns<IData> = [
             type="error"
             disabled={column.level === 1}
             size="small"
-            onClick={() => handleDelete(column)}
+            onClick={() => removeData(componentData, column.id)}
           >
             删除
           </NButton>
@@ -113,13 +114,6 @@ function handleEdit(column: IData) {
   type.value = 2
   currentData.value = column
   showDraw.value = true
-}
-
-function handleDelete(column: IData) {
-  currentData.value = column
-  const index = currentData.value.children!.findIndex((item) => item === column)
-  if (index === -1) return
-  currentData.value.children!.splice(index, 1)
 }
 
 function handleConfirm(type: 1 | 2, data: IData) {
