@@ -186,6 +186,10 @@ importers:
         version: 2.1.10(typescript@5.6.3)
 
   packages/data:
+    dependencies:
+      '@packages/utils':
+        specifier: workspace:^
+        version: link:../utils
     devDependencies:
       '@packages/types':
         specifier: workspace:^

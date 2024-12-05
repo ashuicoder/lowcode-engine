@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "@packages/types": "workspace:^"
+  },
+  "dependencies": {
+    "@packages/utils": "workspace:^"
   }
 }

@@ -1,20 +1,22 @@
-export type DataType = 'string' | 'number' | 'object' | 'boolean' | 'array' | 'null' | 'undefined'
+export type DataType = 'string' | 'number' | 'object' | 'boolean' | 'array'
+export type DataTypeDesc = '字符串' | '数字' | '对象' | '布尔' | '数组'
 
 export interface IData {
   desc: string
   type: DataType
-  propty?: string
+  property?: string
   level: number
-
+  allowNull: boolean
   children?: IData[]
-}
-
-export interface IDataConfig {
-  desc: string
-  type: DataType
   canHaveChild: boolean
-  [key: string]: any
-  childTypes?: Array<DataType>
+  id: string
+  parentId?: string
 }
 
-export type DataConfigList = Array<IDataConfig>
+export type DataConfig = {
+  [K in DataType]: {
+    desc: DataTypeDesc
+    canHaveChild: boolean
+    childTypes?: Array<DataType>
+  }
+}
