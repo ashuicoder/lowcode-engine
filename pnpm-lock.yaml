@@ -215,11 +215,7 @@ importers:
 
   packages/provider: {}
 
-  packages/types:
-    dependencies:
-      '@packages/data':
-        specifier: workspace:^
-        version: link:../data
+  packages/types: {}
 
   packages/utils:
     dependencies:

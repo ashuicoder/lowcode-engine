@@ -1,4 +1,4 @@
-import type { IStyleConfigMap } from 'packages/types'
+import type { IStyleConfigMap } from '@packages/types'
 
 export const styleConfigMap: IStyleConfigMap = {
   width: {
