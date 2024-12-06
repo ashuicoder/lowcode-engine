@@ -48,5 +48,6 @@ export const pcComponentMap: IComponentMap = {
       name: 'NaiveUiForm',
       import: 'naive-ui-form',
     },
+    props: [],
   },
 }

@@ -2,17 +2,17 @@
   <aside
     class="rg-w-[320px] rg-bg-white rg-shadow-lg rg-overflow-y-auto rg-custom-scrollbar rg-p-4"
   >
-    <n-tabs size="small" type="line" animated default-value="style" pane-style="margin-top: 20px">
-      <n-tab-pane name="style" tab="样式">
+    <n-tabs size="small" type="line" animated default-value="prop" pane-style="margin-top: 20px">
+      <n-tab-pane name="style" tab="样式" display-directive="show:lazy">
         <StyleConfig />
       </n-tab-pane>
-      <n-tab-pane name="prop" tab="属性">
+      <n-tab-pane name="prop" tab="属性" display-directive="show:lazy">
         <PropConfig />
       </n-tab-pane>
-      <n-tab-pane name="data" tab="数据">
+      <n-tab-pane name="data" tab="数据" display-directive="show:lazy">
         <PropConfig />
       </n-tab-pane>
-      <n-tab-pane name="event" tab="事件">
+      <n-tab-pane name="event" tab="事件" display-directive="show:lazy">
         <EventConfig />
       </n-tab-pane>
     </n-tabs>

@@ -14,6 +14,7 @@ export function generateComponentNode(material: IMaterial, parent: IComponentNod
     level: parent.level + 1,
     parentId: parent.id,
     name: material.name,
+    props: node.props ? cloneDeep(node.props) : [],
   }
 }
 export function initDrawBoard(): IComponentNode {
@@ -28,6 +29,12 @@ export function initDrawBoard(): IComponentNode {
     canDrop: true,
     level: 1,
     excludeStyle: ['all'],
+    props: [
+      {
+        properpty: 'a',
+        value: '1',
+      },
+    ],
   }
 }
 
