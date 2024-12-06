@@ -39,7 +39,7 @@
         </NFormItem>
       </template>
 
-      <NFormItem label="其他配置">
+      <NFormItem label="其他配置" label-placement="top">
         <NInput v-model:value="otherStyleString" type="textarea" @blur="handleOtherChange"></NInput>
       </NFormItem>
     </NForm>
@@ -82,7 +82,9 @@ const currentNodeStyle = computed<IStyleConfigMap>(() => {
   return {}
 })
 
-const otherStyleString = ref('{}')
+const otherStyleString = ref(`{
+
+}`)
 
 function handleOtherChange() {
   try {

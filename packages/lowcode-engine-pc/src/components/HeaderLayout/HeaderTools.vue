@@ -77,7 +77,7 @@ function handleFileChange(e: Event) {
   handleUploadJson(target.files[0])
 }
 
-const showDataModal = ref(true)
+const showDataModal = ref(false)
 function handleDataConfig() {
   showDataModal.value = true
 }
