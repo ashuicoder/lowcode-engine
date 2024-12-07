@@ -61,19 +61,12 @@ import {
 } from 'naive-ui'
 
 import to from 'await-to-js'
-import { dataConfig } from '@packages/data'
+import { dataConfigList } from '@packages/data'
 
 import { generateUniqueId } from '@packages/utils'
 
-import type { DataType, IData } from '@packages/types'
+import type { IData } from '@packages/types'
 import { cloneDeep } from 'es-toolkit'
-
-const dataConfigList = Object.keys(dataConfig).map((key) => {
-  return {
-    label: dataConfig[key as DataType].desc,
-    value: key,
-  }
-})
 
 const show = defineModel<boolean>('value', {
   required: true,

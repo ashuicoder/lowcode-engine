@@ -6,8 +6,6 @@
     <div class="rg-mt-4">
       <NButton type="primary" @click="handleAdd">添加属性</NButton>
     </div>
-
-    <AddOrEditProp v-model:show="showAddOrEditProp" :prop="currentProps" />
   </div>
 </template>
 
@@ -49,14 +47,14 @@ const columns: DataTableColumns<IProp> = [
 ]
 
 const showAddOrEditProp = ref(false)
-const currentProps = ref<IProp>()
+const currentProp = ref<IProp>()
 function handleAdd() {
-  currentProps.value = undefined
+  currentProp.value = undefined
   showAddOrEditProp.value = true
 }
 
 function handleEdit(row: IProp) {
-  currentProps.value = row
+  currentProp.value = row
   showAddOrEditProp.value = true
 }
 

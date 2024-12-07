@@ -1,4 +1,4 @@
-import type { DataConfig } from '@packages/types'
+import type { DataConfig, DataType } from '@packages/types'
 
 export const dataConfig: DataConfig = {
   string: {
@@ -24,3 +24,10 @@ export const dataConfig: DataConfig = {
     childTypes: ['string', 'number', 'boolean', 'object', 'array'],
   },
 }
+
+export const dataConfigList = Object.keys(dataConfig).map((key) => {
+  return {
+    label: dataConfig[key as DataType].desc,
+    value: key,
+  }
+})
