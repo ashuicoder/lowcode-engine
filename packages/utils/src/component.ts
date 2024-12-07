@@ -33,6 +33,7 @@ export function initDrawBoard(): IComponentNode {
       {
         properpty: 'a',
         value: '1',
+        type: 'string',
       },
     ],
   }

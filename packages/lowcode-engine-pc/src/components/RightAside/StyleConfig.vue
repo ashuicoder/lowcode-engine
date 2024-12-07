@@ -40,7 +40,11 @@
       </template>
 
       <NFormItem label="其他配置" label-placement="top">
-        <NInput v-model:value="otherStyleString" type="textarea" @blur="handleOtherChange"></NInput>
+        <Codemirror
+          v-model:value="otherStyleString"
+          :options="cmOptions"
+          @blur="handleOtherChange"
+        ></Codemirror>
       </NFormItem>
     </NForm>
   </NSpace>
@@ -51,6 +55,12 @@ import { NSpace, NForm, NFormItem, NInput, NSelect, NColorPicker } from 'naive-u
 import { currentNode, styleConfigMap } from '@packages/data'
 import { watch, ref, nextTick, computed } from 'vue'
 import { omit, pick } from 'es-toolkit'
+
+import type { EditorConfiguration } from 'codemirror'
+import Codemirror from 'codemirror-editor-vue3'
+// mode
+import 'codemirror/mode/javascript/javascript.js'
+
 import type { IStyleConfigMap } from '@packages/types'
 
 const show = ref(false)
@@ -86,13 +96,20 @@ const otherStyleString = ref(`{
 
 }`)
 
+const cmOptions: EditorConfiguration = {
+  mode: 'application/json',
+  lineNumbers: true,
+  lineWiseCopyCut: true,
+  gutters: ['CodeMirror-lint-markers'],
+}
+
 function handleOtherChange() {
+  console.log('change')
   try {
     const obj = JSON.parse(otherStyleString.value)
-
     currentNode.value!.style = {
-      ...obj,
       ...currentNode.value!.style,
+      ...obj,
     }
   } catch (error) {
     console.error(error)

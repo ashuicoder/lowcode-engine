@@ -12,7 +12,7 @@
 
       <div class="rg-mt-4">
         <NH4>JSON预览</NH4>
-        <div class="rg-mt-4 rg-bg-black rg-text-white rg-p-4">{{ data }}</div>
+        <Codemirror v-model:value="data" :options="cmOptions"></Codemirror>
       </div>
     </div>
 
@@ -28,6 +28,11 @@ import type { IData } from '@packages/types'
 import AddOrEdit from './AddOrEdit.vue'
 import { componentData, dataConfig } from '@packages/data'
 import { removeData, generateData } from '@packages/utils'
+
+import type { EditorConfiguration } from 'codemirror'
+import Codemirror from 'codemirror-editor-vue3'
+// mode
+import 'codemirror/mode/javascript/javascript.js'
 
 const show = defineModel<boolean>('value', {
   required: true,
@@ -127,15 +132,13 @@ const data = computed(() => {
   return JSON.stringify(generateData(componentData[0]), null, 2)
 })
 
-watch(
-  data,
-  (val) => {
-    console.log(val)
-  },
-  {
-    deep: true,
-  },
-)
+const cmOptions: EditorConfiguration = {
+  mode: 'application/json',
+  lineNumbers: false,
+  lineWiseCopyCut: true,
+  gutters: ['CodeMirror-lint-markers'],
+  readOnly: true,
+}
 </script>
 
 <style scoped></style>
