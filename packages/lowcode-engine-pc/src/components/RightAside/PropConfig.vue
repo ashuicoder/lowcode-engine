@@ -6,6 +6,7 @@
     <div class="rg-mt-4">
       <NButton type="primary" @click="handleAdd">添加属性</NButton>
     </div>
+    <AddOrEditProp v-model:show="showAddOrEditProp" :current-data="currentProp"></AddOrEditProp>
   </div>
 </template>
 

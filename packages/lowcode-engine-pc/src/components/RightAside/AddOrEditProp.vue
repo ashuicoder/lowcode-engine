@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { NModal } from 'naive-ui'
+import {} from 'naive-ui-form'
 import type { IProp } from '@packages/types'
 
 const show = defineModel<boolean>('show', {
@@ -13,7 +13,7 @@ const show = defineModel<boolean>('show', {
 })
 
 defineProps<{
-  prop?: IProp
+  currentData?: IProp
 }>()
 </script>
 
