@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { NTabs, NTabPane } from 'naive-ui'
 import StyleConfig from './StyleConfig.vue'
-import PropConfig from './PropConfig.vue'
+import PropConfig from './prop/index.vue'
 import EventConfig from './EventConfig.vue'
 </script>
 
