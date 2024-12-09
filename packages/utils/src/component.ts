@@ -29,13 +29,7 @@ export function initDrawBoard(): IComponentNode {
     canDrop: true,
     level: 1,
     excludeStyle: ['all'],
-    props: [
-      {
-        properpty: 'a',
-        value: '1',
-        type: 'string',
-      },
-    ],
+    props: [],
   }
 }
 

@@ -6,16 +6,22 @@
     ref="formRef"
     :label-width="80"
     style="width: 600px"
+    :on-after-enter="handleOpen"
+    @submit="handleSubmit"
   >
   </ModalForm>
 </template>
 
 <script setup lang="ts">
-import { useTemplateRef } from 'vue'
+import { useTemplateRef, useId } from 'vue'
+import { useMessage } from 'naive-ui'
 import { ModalForm, type FormSchema, type FormInstance } from 'naive-ui-form'
-import { dataConfigList } from '@packages/data'
+import { dataConfigList, currentNode } from '@packages/data'
+import { validateProp } from '@packages/utils'
 import type { IProp } from '@packages/types'
+import { cloneDeep } from 'es-toolkit'
 
+const message = useMessage()
 const show = defineModel<boolean>('show', {
   required: true,
 })
@@ -39,6 +45,9 @@ const schemas: FormSchema[] = [
     componentProps: {
       options: dataConfigList,
       disabled: Boolean(currentData),
+      onUpdateValue() {
+        handleTypeChange()
+      },
     },
   },
   {
@@ -53,9 +62,76 @@ const schemas: FormSchema[] = [
       type: 'textarea',
     },
   },
+  {
+    type: 'input-number',
+    label: '值',
+    field: 'value',
+    required: true,
+    requiredType: 'number',
+    vif(formValue) {
+      return formValue.type && formValue.type === 'number'
+    },
+  },
+
+  {
+    type: 'select',
+    label: '值',
+    field: 'value',
+    required: true,
+    vif(formValue) {
+      return formValue.type && formValue.type === 'boolean'
+    },
+    componentProps: {
+      options: [
+        {
+          label: 'true',
+          value: 'true',
+        },
+        {
+          label: 'false',
+          value: 'false',
+        },
+      ],
+    },
+  },
 ]
 
 const formRef = useTemplateRef<FormInstance>('formRef')
+
+function handleTypeChange() {
+  console.log('handleTypeChange')
+  formRef.value?.setValue({
+    value: null,
+  })
+}
+
+function handleSubmit(value: IProp) {
+  const [isValid, result] = validateProp(value)
+  if (!isValid) {
+    message.error('数据类型有误')
+    return
+  }
+  if (!currentData) {
+    currentNode.value?.props.push({
+      properpty: value.properpty,
+      type: value.type,
+      value: result,
+      id: useId(),
+    })
+  } else {
+    const index = currentNode.value!.props.findIndex((item) => item.id === currentData.id)
+    if (index === -1) return
+    currentNode.value?.props.splice(index, 1, value)
+  }
+
+  show.value = false
+}
+
+function handleOpen() {
+  if (currentData) {
+    formRef.value?.setValue(cloneDeep(currentData))
+  }
+}
 </script>
 
 <style scoped></style>

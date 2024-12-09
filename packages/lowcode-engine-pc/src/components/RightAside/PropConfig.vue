@@ -17,6 +17,7 @@ import { currentNode } from '@packages/data'
 
 import type { IProp } from '@packages/types'
 import AddOrEditProp from './AddOrEditProp.vue'
+import { getPropShowValue } from '@packages/utils'
 
 const columns: DataTableColumns<IProp> = [
   {
@@ -25,8 +26,16 @@ const columns: DataTableColumns<IProp> = [
     width: 120,
   },
   {
+    title: '类型',
+    key: 'type',
+    width: 80,
+  },
+  {
     title: '值',
     key: 'value',
+    render(row) {
+      return getPropShowValue(row)
+    },
   },
   {
     title: '操作',

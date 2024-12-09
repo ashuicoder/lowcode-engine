@@ -1,11 +1,13 @@
 <template>
-  <NConfigProvider>
-    <RouterView></RouterView>
+  <NConfigProvider :locale="zhCN">
+    <NMessageProvider>
+      <RouterView></RouterView>
+    </NMessageProvider>
   </NConfigProvider>
 </template>
 
 <script setup lang="ts">
-import { NConfigProvider } from 'naive-ui'
+import { NConfigProvider, NMessageProvider, zhCN } from 'naive-ui'
 </script>
 
 <style scoped></style>

@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="rg-w-[320px] rg-bg-white rg-shadow-lg rg-overflow-y-auto rg-custom-scrollbar rg-p-4"
+    class="rg-w-[420px] rg-bg-white rg-shadow-lg rg-overflow-y-auto rg-custom-scrollbar rg-p-4"
   >
     <n-tabs size="small" type="line" animated default-value="prop" pane-style="margin-top: 20px">
       <n-tab-pane name="style" tab="样式" display-directive="show:lazy">
