@@ -1,8 +1,8 @@
-import type { Component } from 'vue'
+import type { VNode } from 'vue'
 
 export interface ITool {
   name: string
   action: string
-  icon: Component
+  icon: () => VNode
   onClick: () => void
 }

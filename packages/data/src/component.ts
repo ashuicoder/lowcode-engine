@@ -8,6 +8,7 @@ export const pcComponentMap: IComponentMap = {
     style: {
       height: '60px',
     },
+    canDrop: true,
   },
   text: {
     component: {
@@ -17,6 +18,10 @@ export const pcComponentMap: IComponentMap = {
   image: {
     component: {
       name: 'img',
+    },
+    style: {
+      width: '400px',
+      height: '400px',
     },
   },
   button: {

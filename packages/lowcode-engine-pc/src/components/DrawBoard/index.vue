@@ -1,5 +1,5 @@
 <template>
-  <div class="rg-flex-1 rg-min-h-0 rg-bg-white rg-overflow-auto rg-custom-scrollbar rg-mt-4">
+  <div class="rg-flex-1 rg-min-h-0 rg-bg-white rg-overflow-auto rg-custom-scrollbar">
     <RenderComponent v-model:list="componentTree" />
   </div>
 </template>

@@ -7,3 +7,5 @@ export const componentTree = ref<IComponentNodeTree>([])
 export const showForbidDrop = ref(false)
 
 export const componentData = reactive<IData[]>([initData()])
+
+export const showOutline = ref(false)

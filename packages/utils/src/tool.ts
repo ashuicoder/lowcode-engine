@@ -1,7 +1,16 @@
-import { useId } from 'vue'
 import { componentTree, currentNode } from '@packages/data'
 export function generateUniqueId() {
-  return useId()
+  if (window.crypto && window.crypto.getRandomValues) {
+    const array = new Uint32Array(2)
+    window.crypto.getRandomValues(array)
+    return Array.from(array, (dec) => `000000${dec.toString(16)}`.slice(-8)).join('')
+  } else if (window.crypto) {
+    const array = new Uint32Array(2)
+    window.crypto.getRandomValues(array)
+    return Array.from(array, (dec) => `000000${dec.toString(16)}`.slice(-8)).join('')
+  } else {
+    throw new Error('No secure random number generator available.')
+  }
 }
 
 export function handleDwonloadJson(fileName = 'componentTree.json') {

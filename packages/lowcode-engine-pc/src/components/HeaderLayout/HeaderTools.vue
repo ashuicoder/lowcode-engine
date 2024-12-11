@@ -29,13 +29,22 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue'
 import { NSpace, NButton } from 'naive-ui'
-import { dataBaseIcon, downloadIcon, uploadIcon, previewIcon } from '@package/icon'
+import { dataBaseIcon, downloadIcon, uploadIcon, previewIcon, outlineIcon } from '@package/icon'
 
 import { renderIcon, handleDwonloadJson, handleUploadJson } from '@packages/utils'
+
 import type { ITool } from '@packages/types'
 import DataConfig from '../DataConfig/index.vue'
-
+import { showOutline } from '@packages/data'
 const toolsList = ref<ITool[]>([
+  {
+    name: '大纲',
+    icon: renderIcon(outlineIcon),
+    action: 'database',
+    onClick() {
+      handleOutline()
+    },
+  },
   {
     name: '数据配置',
     icon: renderIcon(dataBaseIcon),
@@ -80,6 +89,10 @@ function handleFileChange(e: Event) {
 const showDataModal = ref(false)
 function handleDataConfig() {
   showDataModal.value = true
+}
+
+function handleOutline() {
+  showOutline.value = !showOutline.value
 }
 </script>
 

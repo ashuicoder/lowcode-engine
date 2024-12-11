@@ -22,7 +22,7 @@ import colors from 'tailwindcss/colors'
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
 
-import { Delete20Regular, ArrowSortUp24Filled, ArrowSortDown24Filled } from '@vicons/fluent'
+import { deleteIcon, upIcon, downIcon } from '@package/icon'
 import { renderIcon, removeNode, moveNodeDown, moveNodeUp } from '@packages/utils'
 import { showForbidDrop } from '@packages/data'
 
@@ -49,7 +49,8 @@ const [collect, dropBind] = useDrop(() => ({
 
 const { isOverCurrent } = toRefs(collect)
 
-function setDrop(el: HTMLElement | Record<string, any>) {
+function setDrop(el: HTMLElement | Record<string, any> | null) {
+  if (!el) return
   if (el instanceof window.HTMLElement) {
     dropBind(el)
     return
@@ -64,7 +65,6 @@ function setDrop(el: HTMLElement | Record<string, any>) {
 watch(isOverCurrent, (val) => {
   showForbidDrop.value = val && !node.canDrop
 })
-
 const borderColor = computed(() => {
   if (isOverCurrent.value && node.canDrop) return colors.green[500]
   if (isOverCurrent.value && !node.canDrop) return colors.red[500]
@@ -96,14 +96,14 @@ function onContextMenu(e: MouseEvent) {
         onClick: () => {
           moveNodeUp(componentTree, node.id)
         },
-        icon: renderIcon(ArrowSortUp24Filled),
+        icon: renderIcon(upIcon),
       },
       {
         label: '下移',
         onClick: () => {
           moveNodeDown(componentTree, node.id)
         },
-        icon: renderIcon(ArrowSortDown24Filled),
+        icon: renderIcon(downIcon),
       },
       {
         label: '删除',
@@ -111,7 +111,7 @@ function onContextMenu(e: MouseEvent) {
         onClick: () => {
           removeNode(componentTree, node.id)
         },
-        icon: renderIcon(Delete20Regular),
+        icon: renderIcon(deleteIcon),
       },
     ],
   })
