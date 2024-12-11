@@ -29,8 +29,8 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue'
 import { NSpace, NButton } from 'naive-ui'
-import { FileUploadOutlined, FileDownloadOutlined, RemoveRedEyeOutlined } from '@vicons/material'
-import { Database } from '@vicons/tabler'
+import { dataBaseIcon, downloadIcon, uploadIcon, previewIcon } from '@package/icon'
+
 import { renderIcon, handleDwonloadJson, handleUploadJson } from '@packages/utils'
 import type { ITool } from '@packages/types'
 import DataConfig from '../DataConfig/index.vue'
@@ -38,7 +38,7 @@ import DataConfig from '../DataConfig/index.vue'
 const toolsList = ref<ITool[]>([
   {
     name: '数据配置',
-    icon: renderIcon(Database),
+    icon: renderIcon(dataBaseIcon),
     action: 'database',
     onClick() {
       handleDataConfig()
@@ -46,7 +46,7 @@ const toolsList = ref<ITool[]>([
   },
   {
     name: '下载JSON',
-    icon: renderIcon(FileDownloadOutlined),
+    icon: renderIcon(downloadIcon),
     action: 'download',
     onClick() {
       handleDwonloadJson()
@@ -54,7 +54,7 @@ const toolsList = ref<ITool[]>([
   },
   {
     name: '导入JSON',
-    icon: renderIcon(FileUploadOutlined),
+    icon: renderIcon(uploadIcon),
     action: 'upload',
     onClick() {
       uploadRef.value?.click()
@@ -62,7 +62,7 @@ const toolsList = ref<ITool[]>([
   },
   {
     name: '预览',
-    icon: renderIcon(RemoveRedEyeOutlined),
+    icon: renderIcon(previewIcon),
     action: 'preview',
     onClick() {
       handleDwonloadJson()
