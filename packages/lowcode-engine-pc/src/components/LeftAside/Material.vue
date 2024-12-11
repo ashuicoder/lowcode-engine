@@ -3,7 +3,6 @@
     :key="material.name"
     :ref="dragRef"
     class="rg-border rg-text-center rg-p-1 rg-text-xs rg-rounded rg-border-slate-200 rg-text-slate-500 hover:rg-border-primary"
-    :class="[showForbidDrop ? 'rg-cursor-not-allowed ' : 'rg-cursor-move']"
     :style="{
       opacity,
     }"
@@ -16,7 +15,6 @@
 import { unref, computed } from 'vue'
 import { useDrag } from 'vue3-dnd'
 import { toRefs } from '@vueuse/core'
-import { showForbidDrop } from '@packages/data'
 
 import type { IMaterial } from '@packages/types'
 

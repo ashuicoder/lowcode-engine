@@ -3,7 +3,7 @@
     :ref="setDrop"
     :style="node.style"
     :is="node.component.name"
-    class="rg-border rg-border-dashed rg-relative rg-compoent"
+    class="rg-border rg-border-dashed rg-relative"
     @click.stop="handleComponentClick"
     @contextmenu.stop="onContextMenu"
   >
@@ -16,8 +16,6 @@ import { currentNode, componentTree } from '@packages/data'
 import { useDrop } from 'vue3-dnd'
 import { toRefs } from '@vueuse/core'
 import type { IMaterial, IComponentNode } from '@packages/types'
-import { computed, watch } from 'vue'
-import colors from 'tailwindcss/colors'
 
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
@@ -25,6 +23,7 @@ import ContextMenu from '@imengyu/vue3-context-menu'
 import { deleteIcon, upIcon, downIcon } from '@package/icon'
 import { renderIcon, removeNode, moveNodeDown, moveNodeUp } from '@packages/utils'
 import { showForbidDrop } from '@packages/data'
+import { watch } from 'vue'
 
 const { node } = defineProps<{
   node: IComponentNode
@@ -65,19 +64,6 @@ function setDrop(el: HTMLElement | Record<string, any> | null) {
 watch(isOverCurrent, (val) => {
   showForbidDrop.value = val && !node.canDrop
 })
-const borderColor = computed(() => {
-  if (isOverCurrent.value && node.canDrop) return colors.green[500]
-  if (isOverCurrent.value && !node.canDrop) return colors.red[500]
-
-  if (node.id === currentNode.value?.id) return 'var(--primary)'
-  return colors.gray[300]
-})
-
-const contentStr = computed(() => {
-  if (!node.canDrop && isOverCurrent.value) return '"该元素不支持放置"'
-  return '""'
-})
-
 function handleComponentClick() {
   if (node.id === currentNode.value?.id) return
   currentNode.value = node
@@ -118,20 +104,4 @@ function onContextMenu(e: MouseEvent) {
 }
 </script>
 
-<style lang="scss" scoped>
-.rg-compoent {
-  &::before {
-    content: v-bind(contentStr);
-    position: absolute;
-    pointer-events: none;
-    color: red;
-    @apply rg-flex rg-justify-center rg-items-center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    @apply rg-border rg-border-dashed;
-    border-color: v-bind(borderColor);
-  }
-}
-</style>
+<style lang="scss" scoped></style>

@@ -8,7 +8,6 @@ export const pcComponentMap: IComponentMap = {
     style: {
       height: '60px',
     },
-    canDrop: true,
   },
   text: {
     component: {
