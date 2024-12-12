@@ -1,6 +1,6 @@
 <template>
   <DropComponent
-    v-for="item in componentTree"
+    v-for="item in list"
     :key="item.id"
     :node="item"
     @drop="(material) => handleDrop(item, material)"
@@ -15,9 +15,9 @@ import DropComponent from './DropComponent.vue'
 import type { IComponentNodeTree, IComponentNode, IMaterial } from '@packages/types'
 import { currentNode } from '@packages/data'
 
-const componentTree = defineModel<IComponentNodeTree>('list', {
-  required: true,
-})
+const { list } = defineProps<{
+  list: IComponentNodeTree
+}>()
 
 function handleDrop(node: IComponentNode, material: IMaterial) {
   const vNode = generateComponentNode(material, node)

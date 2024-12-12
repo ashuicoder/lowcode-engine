@@ -3,6 +3,7 @@
     :ref="setDrop"
     :style="node.style"
     :is="node.component.name"
+    :id="node.id"
     class="rg-border rg-border-dashed rg-relative"
     @click.stop="handleComponentClick"
     @contextmenu.stop="onContextMenu"

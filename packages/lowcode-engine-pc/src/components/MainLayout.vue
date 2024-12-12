@@ -33,6 +33,7 @@ import OutLine from './Outline/inex.vue'
 .rg-custom-scrollbar {
   &::-webkit-scrollbar {
     width: 6px; /* 滚动条宽度 */
+    height: 6px;
   }
 
   &::-webkit-scrollbar-track {
