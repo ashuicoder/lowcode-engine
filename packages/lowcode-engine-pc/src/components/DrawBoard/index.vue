@@ -5,7 +5,7 @@
   >
     <RenderComponent :list="componentTree" />
 
-    <Tooltip />
+    <Tooltip v-if="currentNode" />
   </div>
 </template>
 

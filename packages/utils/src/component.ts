@@ -24,7 +24,7 @@ export function initDrawBoard(): IComponentNode {
     name: '最外层盒子',
     style: {
       height: '800px',
-      width: '3000px',
+      width: '100%',
     },
     canDrop: true,
     level: 1,

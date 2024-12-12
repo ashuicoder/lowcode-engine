@@ -1,7 +1,7 @@
 <template>
   <div
     :style="tooltipInfo"
-    class="rg-absolute rg-border rg-border-primary rg-border-dashed rg-pointer-events-none"
+    class="rg-absolute rg-border rg-border-primary rg-border-dashed rg-pointer-events-none rg-tooltip"
   ></div>
 </template>
 
@@ -35,7 +35,6 @@ function getComponentInfo(id: string) {
     target,
     document.getElementById(DRAWER_CONTAINER_ID)!,
   )
-  console.log(info)
   tooltipInfo.value = info
 }
 
@@ -61,4 +60,8 @@ function getOffsetRectRelativeToAncestor(elem: HTMLElement, ancestor: HTMLElemen
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.rg-tooltip {
+  transition: all 0.2s ease-in-out;
+}
+</style>

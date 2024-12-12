@@ -4,7 +4,7 @@
     :style="node.style"
     :is="node.component.name"
     :id="node.id"
-    class="rg-border rg-border-dashed rg-relative"
+    class="rg-border rg-border-dashed rg-border-slate-300 rg-relative"
     @click.stop="handleComponentClick"
     @contextmenu.stop="onContextMenu"
   >
