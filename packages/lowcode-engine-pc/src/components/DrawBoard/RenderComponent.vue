@@ -15,10 +15,9 @@ import DropComponent from './DropComponent.vue'
 import type { IComponentNodeTree, IComponentNode, IMaterial } from '@packages/types'
 import { currentNode } from '@packages/data'
 
-const { list } = defineProps<{
-  list: IComponentNodeTree
-}>()
-
+const list = defineModel<IComponentNodeTree>('list', {
+  required: true,
+})
 function handleDrop(node: IComponentNode, material: IMaterial) {
   const vNode = generateComponentNode(material, node)
   if (node.children) {

@@ -14,11 +14,11 @@ export interface IComponentNode {
   level: number
   parentId?: string
   style?: StyleMap
-  canDrop?: boolean
   component: IcomponetInfo
   includeStyle?: 'all' | Array<StyleKey>
   excludeStyle?: Array<StyleKey>
   props: IProp[]
+  accept?: 'all' | IMaterialType[]
 
   children?: IComponentNode[]
 }

@@ -18,13 +18,13 @@ import { toRefs } from '@vueuse/core'
 
 import type { IMaterial } from '@packages/types'
 
-const props = defineProps<{
+const { material } = defineProps<{
   material: IMaterial
 }>()
 
 const [collect, dragRef] = useDrag(() => ({
-  type: 'material',
-  item: props.material,
+  type: material.type,
+  item: material,
   collect: (monitor) => ({
     isDragging: monitor.isDragging(),
   }),

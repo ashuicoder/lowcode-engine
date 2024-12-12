@@ -15,16 +15,13 @@
 <script setup lang="ts">
 import { currentNode, componentTree } from '@packages/data'
 import { useDrop } from 'vue3-dnd'
-import { toRefs } from '@vueuse/core'
 import type { IMaterial, IComponentNode } from '@packages/types'
 
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
 
 import { deleteIcon, upIcon, downIcon } from '@package/icon'
-import { renderIcon, removeNode, moveNodeDown, moveNodeUp } from '@packages/utils'
-import { showForbidDrop } from '@packages/data'
-import { watch } from 'vue'
+import { renderIcon, removeNode, moveNodeDown, moveNodeUp, generateAccept } from '@packages/utils'
 
 const { node } = defineProps<{
   node: IComponentNode
@@ -34,21 +31,27 @@ const emits = defineEmits<{
   drop: [material: IMaterial]
 }>()
 
+const accept = generateAccept(node)
+
 const [collect, dropBind] = useDrop(() => ({
-  accept: ['material'],
+  accept,
   drop(item: IMaterial, monitor) {
-    if (!node.canDrop) return
+    console.log(node)
+    console.log(item, accept)
+    if (!collect.value.isCurrentOver) return
     if (monitor.didDrop()) return
+    if (!accept.includes(item.type)) return
+
     emits('drop', item)
   },
+
   collect: (monitor) => ({
-    isOver: monitor.isOver(),
-    isOverCurrent: monitor.isOver({ shallow: true }),
+    isCurrentOver: monitor.isOver({ shallow: true }),
   }),
+  // canDrop(item: IMaterial) {
+  //   return accept.includes(item.type)
+  // },
 }))
-
-const { isOverCurrent } = toRefs(collect)
-
 function setDrop(el: HTMLElement | Record<string, any> | null) {
   if (!el) return
   if (el instanceof window.HTMLElement) {
@@ -62,9 +65,6 @@ function setDrop(el: HTMLElement | Record<string, any> | null) {
   dropBind(el.$el)
 }
 
-watch(isOverCurrent, (val) => {
-  showForbidDrop.value = val && !node.canDrop
-})
 function handleComponentClick() {
   if (node.id === currentNode.value?.id) return
   currentNode.value = node

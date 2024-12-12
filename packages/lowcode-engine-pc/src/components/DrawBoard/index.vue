@@ -3,7 +3,7 @@
     :id="DRAWER_CONTAINER_ID"
     class="rg-flex-1 rg-min-h-0 rg-bg-white rg-overflow-auto rg-custom-scrollbar rg-relative"
   >
-    <RenderComponent :list="componentTree" />
+    <RenderComponent v-model:list="componentTree" />
 
     <Tooltip v-if="currentNode" />
   </div>

@@ -8,6 +8,7 @@ export const pcComponentMap: IComponentMap = {
     style: {
       height: '60px',
     },
+    accept: 'all',
   },
   text: {
     component: {
@@ -34,6 +35,7 @@ export const pcComponentMap: IComponentMap = {
       name: 'NFlex',
       import: 'naive-ui',
     },
+    accept: ['box'],
   },
   grid: {
     component: {

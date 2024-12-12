@@ -26,10 +26,10 @@ export function initDrawBoard(): IComponentNode {
       height: '800px',
       width: '100%',
     },
-    canDrop: true,
     level: 1,
     excludeStyle: ['all'],
     props: [],
+    accept: 'all',
   }
 }
 
@@ -137,4 +137,12 @@ export function moveNodeDown(tree: Ref<IComponentNodeTree>, nodeId: string): voi
   if (currentIndex < parent.children.length - 1) {
     parent.children.splice(currentIndex + 1, 0, parent.children.splice(currentIndex, 1)[0])
   }
+}
+
+export function generateAccept(node: IComponentNode): string[] {
+  if (!node.accept) return []
+  if (node.accept === 'all') {
+    return Object.keys(pcComponentMap)
+  }
+  return node.accept
 }
