@@ -8,6 +8,8 @@ export type IMaterialType =
   | 'flex'
   | 'grid'
   | 'form'
+  | 'form-item'
+  | 'input'
 
 export interface IMaterial {
   name: string

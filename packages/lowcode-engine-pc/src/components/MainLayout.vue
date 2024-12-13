@@ -8,6 +8,7 @@
       <HeaderLayout />
       <div class="rg-flex-1 rg-min-h-0 rg-overflow-hidden rg-flex rg-mt-4">
         <OutLine v-if="showOutline" />
+
         <DrawBoard />
       </div>
     </main>

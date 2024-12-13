@@ -34,10 +34,8 @@ const emits = defineEmits<{
 const accept = generateAccept(node)
 
 const [collect, dropBind] = useDrop(() => ({
-  accept,
+  accept: ['material'],
   drop(item: IMaterial, monitor) {
-    console.log(node)
-    console.log(item, accept)
     if (!collect.value.isCurrentOver) return
     if (monitor.didDrop()) return
     if (!accept.includes(item.type)) return
@@ -48,9 +46,6 @@ const [collect, dropBind] = useDrop(() => ({
   collect: (monitor) => ({
     isCurrentOver: monitor.isOver({ shallow: true }),
   }),
-  // canDrop(item: IMaterial) {
-  //   return accept.includes(item.type)
-  // },
 }))
 function setDrop(el: HTMLElement | Record<string, any> | null) {
   if (!el) return

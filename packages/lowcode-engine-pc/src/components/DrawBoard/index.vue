@@ -20,8 +20,4 @@ componentTree.value.push(initDrawBoard())
 currentNode.value = componentTree.value[0]
 </script>
 
-<style scoped>
-.rg-tooltip {
-  position: absolute;
-}
-</style>
+<style scoped></style>

@@ -23,7 +23,7 @@ const { material } = defineProps<{
 }>()
 
 const [collect, dragRef] = useDrag(() => ({
-  type: material.type,
+  type: 'material',
   item: material,
   collect: (monitor) => ({
     isDragging: monitor.isDragging(),

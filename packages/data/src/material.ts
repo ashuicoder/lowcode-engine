@@ -43,6 +43,14 @@ export const pcMaterials: Array<IMaterialGroup> = [
         type: 'form',
         name: '表单',
       },
+      {
+        type: 'form-item',
+        name: '表单项',
+      },
+      {
+        type: 'input',
+        name: '输入框',
+      },
     ],
   },
 ]

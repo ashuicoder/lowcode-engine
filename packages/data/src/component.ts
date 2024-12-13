@@ -52,8 +52,24 @@ export const pcComponentMap: IComponentMap = {
   form: {
     component: {
       name: 'NaiveUiForm',
-      import: 'naive-ui-form',
+      import: 'naive-ui',
     },
-    props: [],
+    accept: ['form-item'],
+    includeStyle: ['height'],
+    style: {
+      height: '60px',
+    },
+  },
+  'form-item': {
+    component: {
+      name: 'NFormItem',
+      import: 'naive-ui',
+    },
+  },
+  input: {
+    component: {
+      name: 'NInput',
+      import: 'naive-ui',
+    },
   },
 }
