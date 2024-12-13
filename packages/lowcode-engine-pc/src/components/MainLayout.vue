@@ -1,18 +1,16 @@
 <template>
   <div
-    class="rg-flex rg-h-screen rg-bg-slate-50 rg-text-sm rg-select-none rg-engine-container rg-relative"
-    :id="CONTAINER_ID"
+    class="rg-flex rg-flex-col rg-h-screen rg-bg-slate-50 rg-text-sm rg-select-none rg-engine-container"
   >
-    <LeftAside />
-    <main class="rg-flex-1 rg-min-w-0 rg-mx-4 rg-flex rg-flex-col">
-      <HeaderLayout />
-      <div class="rg-flex-1 rg-min-h-0 rg-overflow-hidden rg-flex rg-mt-4">
+    <HeaderLayout />
+    <main class="rg-flex-1 rg-min-h-0 rg-flex rg-mt-2">
+      <LeftAside />
+      <div class="rg-flex-1 rg-min-w-0 rg-overflow-hidden rg-flex rg-mx-3">
         <OutLine v-if="showOutline" />
-
         <DrawBoard />
       </div>
+      <RightAside />
     </main>
-    <RightAside />
   </div>
 </template>
 
@@ -22,7 +20,7 @@ import DrawBoard from './DrawBoard/index.vue'
 import RightAside from './RightAside/index.vue'
 import HeaderLayout from './HeaderLayout/index.vue'
 
-import { CONTAINER_ID, showOutline } from '@packages/data'
+import { showOutline } from '@packages/data'
 import OutLine from './Outline/inex.vue'
 </script>
 
